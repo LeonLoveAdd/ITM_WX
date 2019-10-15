@@ -1,0 +1,14 @@
+<view>提示：{{tip}}</view>
+<button type="default" bindtap="showModal">点击我弹出modal对话框</button>
+<view>
+<modal title="modal对话框" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消"
+bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">您好，我是modal对话框</modal>
+</view>
+
+
+<view class="container">
+  <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{itemlist}}" wx:key="">
+    <view class="content">{{item.content}}</view>
+    <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+  </view>
+</view>

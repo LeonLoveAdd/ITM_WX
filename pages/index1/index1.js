@@ -97,10 +97,6 @@ Page({
       "id": "5",
         "text": "程序员5"
     }],
-    poster: '../image/yx.jpg',
-    name: '通过选择故障类型形成模板标题',
-    author: '业务部李四 2019-09-16派发',
-    src: "",
     itemlist: [
       {
         poster: '../image/yx.jpg',

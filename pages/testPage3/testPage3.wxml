@@ -1,0 +1,9 @@
+<view class="tapNav">
+ <button bindtap="page1">待处理</button>
+ <button bindtap="page2">处理中</button>
+ <button bindtap="page3">已完成</button>
+</view>
+
+<view class="page1 pagetest" style="display:{{page1}};text-align: center">111</view>
+<view class="page2 pagetest" style="display:{{page2}};text-align: center">222</view>
+<view class="page3 pagetest" style="display:{{page3}};text-align: center">333</view>

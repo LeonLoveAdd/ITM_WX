@@ -38,10 +38,47 @@ bindtouchend="touchEnd">
     </view>
   </view>
 
+  <view class="float {{isModalTrue?'isModalShow':'isModalHide'}}">
+    <view class='floatContent1'>
+      <text class="info">新增任务协同</text>
+      <view class="divLine"></view>
+      <view class="container2">
+        <text class="title">选择协同人</text>
+        <selector style="float:right;margin-top:5px" class="expressRecord2" prop-array='{{modalArray}}'></selector>
+      </view>
+      <view class="divLine"></view>
+      <view class="container2">
+        <text class="title">协同人部门</text>
+        <text class="content">IT部</text>
+      </view>
+      <view class="divLine"></view>
+      <view class="container2">
+        <text class="title">协同人邮箱</text>
+        <text class="content">12312312@163.com</text>
+      </view>
+      <view class="divLine"></view>
+      <view class="container2">
+        <text class="title">协同人电话</text>
+        <text class="content">88888888</text>
+      </view>
+      <view class="divLine"></view>
+      <text class='ruleHide2' bindtap='modalHide'>X</text>
+    </view>
+  </view>
+
   <view class='search'>
       <input type='text' placeholder='输入你想要的内容' confirm-type='search' value="{{inputValue}}" bindinput='inputBind' bindconfirm='query'></input>
       <image class="" src='../image/search.png' bindtap='query'></image>
   </view>
+
+  <view class="block">
+    <view>待处理<text class="text">52</text>条</view>
+    <view class="divLine2"></view>
+    <view>处理中<text class="text">32</text>条</view>
+    <view class="divLine2"></view>
+    <view>本月已完成<text class="text">12</text>条</view>
+  </view>
+
   <!--index.wxml-->
   <view class="container">
     <!-- <image bindtap="kind" class="kind" src="{{userInfo.avatarUrl}}" mode="cover"></image> -->
@@ -53,7 +90,7 @@ bindtouchend="touchEnd">
           <audio poster="{{item.poster}}" name="{{item.name}}" author="{{item.author}}" src="{{item.src}}" id="myAudio" controls loop></audio>
           <view class="btn-view">
             <button class="operation btn1" bindtap="kind">联系接单人</button>
-            <button class="operation btn2" bindtap="modalShow">指派</button>
+            <button class="operation btn2" bindtap="modalShow">协作</button>
             <button class="operation btn3">退回</button>
           </view>
           <text>\n</text>
@@ -155,7 +192,7 @@ bindtouchend="touchEnd">
           <audio poster="{{item.poster}}" name="{{item.name}}" author="{{item.author}}" src="{{item.src}}" id="myAudio" controls loop></audio>
           <view class="divLine1" style="background-color:{{lineColor1}}"></view>
           <view class="btn-view">
-            <button class="operation btn1" bindtap="qq">联系接单人</button>
+            <button class="operation btn1">联系接单人</button>
             <button class="operation btn2" bindtap="modalShow">指派</button>
             <button class="operation btn3">退回</button>
           </view>
@@ -172,7 +209,7 @@ bindtouchend="touchEnd">
           <audio poster="{{item.poster}}" name="{{item.name}}" author="{{item.author}}" src="{{item.src}}" id="myAudio" controls loop></audio>
           <view class="divLine2" style="background-color:{{lineColor2}}"></view>
           <view class="btn-view">
-            <button class="operation btn1" bindtap="qq">联系接单人</button>
+            <button class="operation btn1">联系接单人</button>
             <!-- <button class="operation btn2" bindtap="modalShow">指派</button> -->
             <button class="operation btn3">退回</button>
           </view>
@@ -217,7 +254,7 @@ bindtouchend="touchEnd">
     我的    
   </view>
   <view class="{{tabArr.tabCurrentIndex==1?'active':''}}" data-index="1" bindtap="page2">
-    新增
+    统计
   </view>
   <view class="{{tabArr.tabCurrentIndex==2?'active':''}}" data-index="2" bindtap="page3">
     工单

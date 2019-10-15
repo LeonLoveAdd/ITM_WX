@@ -1,0 +1,43 @@
+/*
+1.横向排列分页标签
+2.每个分页标签各占1/3
+*/
+.tapNav {
+  width: 100%;
+ display: flex;
+ flex-direction: row;
+ position: absolute;
+ bottom: 0;
+}
+.tapNav view{
+ flex:1;
+ width:200rpx;
+ height:100rpx;
+ text-align: center;
+ line-height: 100rpx;
+ font-family: "微软雅黑";
+}
+/*选中样式*/
+.tapNav .active {
+ color:blue;
+ border-bottom:4rpx solid mediumseagreen;
+}
+#swiper {
+ margin-top:40rpx;
+}
+#swiper image{
+ height: 100%;
+ width:100%;
+}
+#imgc{
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  margin: auto;
+  background-color: rgb(123, 123, 247)
+}
+#img{
+  width: 22px;
+  height: 29px;
+  margin: auto;
+}

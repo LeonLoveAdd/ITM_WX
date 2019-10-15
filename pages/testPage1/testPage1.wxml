@@ -1,0 +1,50 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  <view wx:for="{{array}}">{{item}}</view>
+  <view wx:if="{{view == 'WEBVIEW'}}"> WEBVIEW </view>
+  <view wx:elif="{{view == 'APP'}}"> APP </view>
+  <view wx:else> MINA </view>
+
+<!-- 该处为定义一个template模板 -->
+  <template name="staffName">
+  <view>
+    FirstName: {{firstName}}, LastName: {{lastName}}
+  </view>
+  </template>  
+
+  <template name="msgItem">
+    <view>
+      <text> {{index}}: {{msg}} </text>
+      <text> Time: {{time}} </text>
+    </view>
+  </template>
+<!-- 该处为使用刚定义的template模板 -->
+  <!-- <template is="staffName" data="{{...staffA}}"></template>
+  <template is="staffName" data="{{...staffB}}"></template>
+  <template is="staffName" data="{{...staffC}}"></template>{{quickLoginTitle}} -->
+
+  <template is="msgItem" data="{{...item}}"/>
+
+<button style="width:100px;heigth:30px" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取信息</button>
+
+  <button type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"
+  disabled="{{disabled}}" hover-class="other-button-hover" bindtap="ToPage1"> testPage1 </button>
+
+<navigator url="../testPage2/testPage2" class="navigator-hover">testPage2</navigator>
+<navigator url="../testPage3/testPage3" class="navigator-hover">testPage3</navigator>
+<navigator url="../testPage4/testPage4" class="navigator-hover">testPage4</navigator>
+<navigator url="../testPage5/testPage5" class="navigator-hover">testPage5</navigator>
+
+  <view style="text-align:center"> {{title}} </view>
+  <view> 点击左上角返回回到之前页面 </view>
+</view>

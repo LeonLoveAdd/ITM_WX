@@ -1,0 +1,18 @@
+<swiper id="swiper" indicator-dots="{{indicatorDots}}"
+ autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+ current="{{current}}" bindchange="swiperChange">
+ <block wx:for="{{imgUrls}}">
+ <swiper-item id="swiper-item">
+  <image id="imgae" src="{{item}}" class="slide-image" width="100%" height="100%"/>
+ </swiper-item>
+ </block>
+ </swiper>
+ <view class="tapNav">
+ <view class="{{tabArr.tabCurrentIndex==0?'active':''}}" data-index="0" bindtap="veHandle">工单</view>
+ <view class="{{tabArr.tabCurrentIndex==1?'active':''}}" data-index="1" bindtap="veHandle">
+  <view id="imgc" data-index="1" bindtap="veHandle">
+    <image src="../image/u189.png" id="img" data-index="1" bindtap="start"></image>
+  </view>
+ </view>
+ <view class="{{tabArr.tabCurrentIndex==2?'active':''}}" data-index="2" bindtap="veHandle">我的</view>
+</view>

@@ -1,0 +1,327 @@
+<!-- <nav-bar navbar-data='{{nvabarData}}'></nav-bar> -->
+
+<view class='g_con'>
+
+  <view class='topExpress'>
+
+    <view class='topExpress-left'>
+      <image src='../image/red.png' style='width:60rpx;height:60rpx;border-radius:50%'></image>
+    </view>
+    <view class='topExpress-right'>
+      <view class='topExpress-right-top'>张三/运维部</view>
+      <view class='topExpress-right-middle'>2019/08/15 09:20 处理完成</view>
+      <view class='topExpress-right-bottom' bindtap='show' style="color:blue">查看</view>
+    </view>
+
+  </view>
+
+  <!-- 物流时间轴 -->
+  <view class='expressRecord'>
+    <view class="title1">工单流程</view>
+
+    <!-- 顶部收货地址 -->
+    <!-- <view class='expressRecord-getAddress'>
+      <view class='expressRecord-top'>
+        <view class='getAddress-icon'>
+          关
+        </view>
+        <view class='getAddress-text'>[收货地址] 广东省深圳市南山区 南山街道 亿利达大厦</view>
+      </view>
+    </view> -->
+
+    <!-- 顶部收货地址半个时间轴线 -->
+    <!-- <view class='noReach-online-top-close'></view> -->
+
+
+    <!-- 单个物流记录点时间轴：当前正在进行的物流状态 -->
+    <view class='expressRecord-single-close'>
+
+      <!-- 左边子容器 -->
+      <view class='expressRecord-single-noReach-online-top-close'>
+        <!-- 正在进行的时间轴上半个时间线 -->
+        <view class='online-top-closing' style="background:transparent"></view>
+        <!-- 正在进行的时间轴点 -->
+        <view class='getAddress-icon'>关</view>
+        <!-- 正在进行的时间轴下半个时间线 -->
+        <view class='online-bottom'></view>
+      </view>
+
+      <!-- 右边子容器 -->
+      <view class='expressRecord-text'>
+        <view class='expressRecord-statusing'>工单待关闭</view>
+        <view class='expressRecord-status-addressing'>工单待关闭 确认人：李四</view>
+      </view>
+
+      <!-- 相对父级容器绝对定位的日期 -->
+      <view class='expressRecord-dating'>
+        <view class='expressRecord-date-text'>
+          08-17
+        </view>
+        <view class='expressRecord-date-time'>
+          17:15
+        </view>
+      </view>
+
+      <!-- 相对父级容器绝对定位的日期 -->
+      <view class='expressRecord-button'>
+        <button class='expressRecord-button-1' bindtap='showRule'>催单</button>
+      </view>
+    </view>
+
+
+    <!-- 单个物流记录点时间轴：已经过去的物流状态 -->
+    <view class='expressRecord-single-close'>
+      <view class='expressRecord-single-noReach-online-top-close'>
+        <view class='online-top-close'></view>
+        <view class='getAddress-icon'>√</view>
+        <view class='online-bottom'></view>
+      </view>
+
+      <view class='expressRecord-text'>
+        <view class='expressRecord-status'>工单已处理完成</view>
+        <view class='expressRecord-status-address'>工单已处理完成 完成人：张三</view>
+      </view>
+
+      <view class='expressRecord-date'>
+        <view class='expressRecord-date-text'>
+          08-16
+        </view>
+        <view class='expressRecord-date-time'>
+         17:15
+        </view>
+      </view>
+    </view>
+
+    <view class='expressRecord-single-close'>
+      <view class='expressRecord-single-noReach-online-top-close'>
+        <view class='online-top-close'></view>
+        <view class='getAddress-icon2'>协</view>
+        <view class='online-bottom'></view>
+      </view>
+
+      <view class='expressRecord-text'>
+        <view class='expressRecord-status'>发起协同</view>
+        <view class='expressRecord-status-address'>工单协同处理人：张三</view>
+      </view>
+
+      <view class='expressRecord-date'>
+        <view class='expressRecord-date-text'>
+          08-15
+        </view>
+        <view class='expressRecord-date-time'>
+          17:15
+        </view>
+      </view>
+    </view>
+
+    <view class='expressRecord-single-close'>
+      <view class='expressRecord-single-noReach-online-top-close'>
+        <view class='online-top-close'></view>
+        <view class='getAddress-icon'>√</view>
+        <view class='online-bottom'></view>
+      </view>
+
+      <view class='expressRecord-text'>
+        <view class='expressRecord-status'>工单已接收</view>
+        <view class='expressRecord-status-address'>工单已接收 受理人：张三</view>
+      </view>
+
+      <view class='expressRecord-date'>
+        <view class='expressRecord-date-text'>
+          08-15
+        </view>
+        <view class='expressRecord-date-time'>
+          17:15
+        </view>
+      </view>
+    </view>
+
+    <view class='expressRecord-single-close'>
+      <view class='expressRecord-single-noReach-online-top-close'>
+        <view class='online-top-close'></view>
+        <view class='getAddress-icon'>发</view>
+        <view class='online-bottom' style="background:transparent"></view>
+      </view>
+
+      <view class='expressRecord-text'>
+        <view class='expressRecord-status'>工单已发起</view>
+        <view class='expressRecord-status-address'>工单已发起 发起人：李四</view>
+      </view>
+
+      <view class='expressRecord-date'>
+        <view class='expressRecord-date-text'>
+          08-15
+        </view>
+        <view class='expressRecord-date-time'>
+          17:15
+        </view>
+      </view>
+    </view>
+
+    <!-- <view class='expressRecord-single-close'>
+      <view class='expressRecord-single-noReach-online-top-close'>
+        <view class='online-top-close'></view>
+        <view class='dot-close'></view> -->
+        <!-- 起始位置，下半个时间轴线不用 -->
+        <!-- <view class='online-bottom-start'></view>
+      </view> -->
+
+      <!-- <view class='expressRecord-text'>
+        <view class='expressRecord-status'>已发货</view>
+        <view class='expressRecord-status-address'>卖家发货</view>
+      </view>
+
+      <view class='expressRecord-date'>
+        <view class='expressRecord-date-text'>
+          昨天
+        </view>
+        <view class='expressRecord-date-time'>
+          13:50
+        </view>
+      </view>
+    </view> -->
+    
+  </view>
+
+  <view class='expressRecord'>
+    <view class="title1">工单信息</view>
+    <view class="divLine"></view>
+    <view class='expressRecord1'>
+      <view class="expressRecord2 title">工单标题</view>
+      <input class="expressRecord2" type="text" style="width:60%" placeholder="这里是工单标题描述" maxlength="20"></input>
+    </view>
+    <view class="divLine"></view>
+    <view class='expressRecord1'>
+      <view class="expressRecord2 title">工单语音</view>
+      <audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls loop></audio>
+    </view>
+    <view class="divLine"></view>
+    <view class='expressRecord1'>
+      <view class="expressRecord2 title">说明内容</view>
+      <textarea class="expressRecord2" style="width:60%" placeholder="这里是识别文字"></textarea>
+    </view>
+    <view class="divLine"></view>
+    <view class='expressRecord1'>
+      <view class="expressRecord2 title">期望时间</view>
+      <picker class="picker" mode="multiSelector" bindchange="bindMultiPickerChange1" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+        <input value='{{time1}}' class="pick" placeholder="请选择"></input> 
+      </picker>
+    </view>
+    <view class="divLine" style="margin-bottom:0"></view>
+
+    <!-- <text class='up' bindtap='showRule'>点击弹出</text> -->
+    <view class="float {{isRuleTrue?'isRuleShow':'isRuleHide'}}">
+      <view class='floatContent'>
+        每天仅能催单一次，确认是否催单？
+        <image src='../image/red.png' class='ruleHide' bindtap='hideRule'>X</image>
+        <view>
+          <button class="confirm yes">确认</button>
+          <button class="confirm no">取消</button>
+        </view>
+      </view>
+    </view>
+
+    <view class="float {{isTrue?'isShow':'isHide'}}">
+      <view class='floatContent1'>
+        <text class="info">发单人信息</text>
+        <view class="divLine"></view>
+        <view class="container1">
+          <text class="title">姓名</text>
+          <text class="content">李四</text>
+        </view>
+        <view class="divLine"></view>
+        <view class="container1">
+          <text class="title">部门</text>
+          <text class="content">业务1部</text>
+        </view>
+        <view class="divLine"></view>
+        <view class="container1">
+          <text class="title">邮箱</text>
+          <text class="content">awsl@163.com</text>
+        </view>
+        <view class="divLine"></view>
+        <view class="container1">
+          <text class="title">电话</text>
+          <text class="content">88888888</text>
+        </view>
+        <view class="divLine"></view>
+        <text class='ruleHide1' bindtap='hide'>X</text>
+        <button class="tele">
+          <image style="width:24px;height:24px;margin-top:3px"src="../image/phone.png"></image>
+          拨打发单人电话
+        </button>
+      </view>
+    </view>
+  </view>
+  <view class='expressRecord'>
+    <view class="title1">工单完成说明</view>
+    <view class="divLine"></view>
+    <view class='expressRecord1'>
+      <view class="expressRecord2 title">完成人员</view>
+      <selector style="margin-left:25.9%" class="expressRecord2" prop-array='{{personArray}}'></selector>
+    </view>
+    <view class="divLine"></view>
+    <view class='expressRecord1'>
+      <view class="expressRecord2 title">完成说明</view>
+      <audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls loop></audio>
+    </view>
+    <view class="divLine"></view>
+    <view class='expressRecord1'>
+      <view class="expressRecord2 title">已转文字</view>
+      <textarea class="expressRecord2" style="width:60%" placeholder="这里是识别文字，可编辑"></textarea>
+    </view>
+    <view class="divLine"></view>
+    <view class='expressRecord1'>
+      <view class="expressRecord2 title">完成时间</view>
+      <picker class="picker" mode="multiSelector" bindchange="bindMultiPickerChange2" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+        <input value='{{time2}}' class="pick" placeholder='请选择'/>
+      </picker>
+    </view>
+    <view class="divLine"></view>
+    <view class='expressRecord1'>
+      <view class="expressRecord2 title">工单类型</view>
+      <selector style="margin-left:25.9%" class="expressRecord2" prop-array='{{typeArray}}'></selector>
+    </view>
+    <view class="divLine"></view>
+
+    <view class='upAdd' bindtap='chooseImg'>
+      <image src='../image/plus.png' mode="widthFix" style="width:100px;height:100px"/>
+      <!-- <text class="dianji">点击上传图片</text> -->
+    </view>
+    <view class='uploader-img  flex justify-content-start' wx:if="{{pics}}">
+      <view class='uploader-list' wx:for="{{pics}}" wx:key="item.length">
+        <image src='{{item}}' data-index="{{index}}" mode="scaleToFill" bindtap='previewImg1'/>
+        <text class='delete' data-index="{{index}}" mode="widthFix" bindtap='deleteImg'>X</text>
+      </view>
+    </view>
+
+  </view>
+  <view class="btnView">
+    <button class="btn1" bindtap="btnShow">{{btn1}}</button>
+    <button class="btn2">{{btn2}}</button>
+  </view>
+  <view class="float {{btn?'btnshow':'btnhide'}}">
+      <view class='floatContent1'>
+        <text class="info">工单退回</text>
+        <view class="divLine"></view>
+        <textarea class="return" placeholder="退回原因"></textarea>
+        <text class='ruleHide2' bindtap='btnHide'>X</text>
+        <view class="return-btn">
+          <button class="return-yes">确认</button>
+          <button class="return-no" bindtap='btnHide'>取消</button>
+        </view>
+      </view>
+    </view>
+    <view class="float {{btn?'btnshow':'btnhide'}}">
+      <view class='floatContent1'>
+        <text class="info">工单等待</text>
+        <view class="divLine"></view>
+        <textarea class="return" placeholder="等待原因"></textarea>
+        <text class='ruleHide2' bindtap='btnHide'>X</text>
+        <view class="return-btn">
+          <button class="return-yes">确认</button>
+          <button class="return-no" bindtap='btnHide'>取消</button>
+        </view>
+      </view>
+    </view>
+</view>

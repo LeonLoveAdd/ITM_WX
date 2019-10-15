@@ -13,6 +13,15 @@ page {
   background: #eee;
 }
 
+.block {
+  display: flex;
+  justify-content: space-around;
+}
+
+.text {
+  color: red;
+}
+
 .page2 input { pointer-events: none; }
 
 .page2 {
@@ -186,10 +195,9 @@ textarea {
 }
 
 .divLine2{
- /* background: rgb(250, 247, 50);
- width: 66%;
- height: 10rpx;
- margin-top: -5px; */
+ background: #999;
+ width: 2rpx;
+ height: 40rpx;
 }
 
 .divLine3{

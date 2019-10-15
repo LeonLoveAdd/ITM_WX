@@ -1,7 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/index1/index1",
+    "pages/testPage1/testPage1",
+    "pages/testPage2/testPage2",
+    "pages/testPage3/testPage3",
+    "pages/testPage5/testPage5",
+    "pages/testPage4/testPage4"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -9,5 +15,11 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.1",
+      "provider": "wx069ba97219f66d99"
+    }
+  }
 }
