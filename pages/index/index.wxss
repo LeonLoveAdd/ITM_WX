@@ -13,8 +13,6 @@ page {
   background: #eee;
 }
 
-.page2 input { pointer-events: none; }
-
 .page2 {
   background-color: #eee;
   width: 100%;
