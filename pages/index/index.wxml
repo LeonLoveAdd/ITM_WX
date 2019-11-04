@@ -78,7 +78,7 @@ bindtouchend="touchEnd">
     <view class="divLine"></view>
     <view class='expressRecord1'>
       <view class="expressRecord2 title">语音描述</view>
-      <audio style="width:70%" poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls loop></audio>
+      <audio style="width:70%" poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls ></audio>
     </view>
     <view class="divLine"></view>
     <view class='expressRecord1'>

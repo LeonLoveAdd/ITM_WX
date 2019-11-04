@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var call = require("../../utils/util.js");
 const aa = wx.createSelectorQuery()
 var touchStartX = 0;//触摸时的原点 
 var touchStartY = 0;//触摸时的原点 
@@ -12,15 +13,13 @@ var plugin = requirePlugin("WechatSI")
 let manager = plugin.getRecordRecognitionManager()
 const recorderManager = wx.getRecorderManager()
 const innerAudioContext = wx.createInnerAudioContext()
-var animation;
-// const pics = [];
+var info;
 const date = new Date();
 const years = [];
 const months = [];
 const days = [];
 const hours = [];
 const minutes = [];
-var info;
 //获取年
 for (let i = 2018; i <= date.getFullYear() + 100; i++) {
   years.push("" + i);
@@ -55,6 +54,10 @@ for (let i = 0; i < 60; i++) {
 }
 
 Page({
+  onReady: function (e) {
+    // 使用 wx.createAudioContext 获取 audio 上下文 context
+    this.audioCtx = wx.createAudioContext('myAudio')
+  },
   data: {
     inputValue: '', //搜索的内容
     home: "none",
@@ -106,26 +109,26 @@ Page({
         poster: '../image/yx.jpg',
         name: '通过选择故障类型形成模板标题',
         author: '业务部李四 2019-09-16派发',
-        src: info,
+        src: 'http://ws.stream.qqmusic.qq.com/C4000026068q3oJjXe.m4a?guid=245720960&vkey=FF70361B1332C6472514BB5300D690E51353A9EC08CD93DEA5A5C95D6C5A88A34044CC9575D0F46B07255C0B5AEBCBCF4AA85EC8165B8F50&uin=3123&fromtag=66',
       },
       {
         poster: '../image/yx.jpg',
         name: '通过选择故障类型形成模板标题',
         author: '业务部李四 2019-09-16派发',
-        src: info,
+        src: '',
       },
       {
         poster: '../image/yx.jpg',
         name: '通过选择故障类型形成模板标题',
         author: '业务部李四 2019-09-16派发',
-        src: info,
+        src: '',
       },
     ],
-    startX: 0, //开始坐标
+    startX: 0, //开始坐标 0, 9, 16, 10, 17
     startY: 0,
     arr: "block",
     time: '',
-    multiArray: [years, months, days, hours, minutes],
+    multiArray: [years,months,days,hours,minutes],
     multiIndex: [0, 9, 16, 10, 17],
     choose_year: '',
     page1: "block",
@@ -134,24 +137,116 @@ Page({
     page_d: "block",
     page_c: "none",
     page_y: "none",
-    lineColor1: "rgb(16, 240, 72)",
-    lineColor2: "rgb(250, 247, 50)",
-    lineColor3: "rgb(122, 122, 122)",
     userInfo: {},
     pics :[],
     transfer: "转接单页面",
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    // staffA: { firstName: 'Hulk', lastName: 'Hu' },
-    // staffB: { firstName: 'Shang', lastName: 'You' },
-    // staffC: { firstName: 'Gideon', lastName: 'Lin' }
-    item: {
-      index: 0,
-      msg: 'this is a template',
-      time: '2016-09-15'
-    }
   },
 
+  // bindMultiPickerColumnChange: function(e) {
+  //   call.bindMultiPickerColumnChange(e)
+  // },
+
+  // bindMultiPickerChange: function (e) {
+  //   call.bindMultiPickerChange(e)
+  // },
+
+  // setTime: function (time, multiArray, multiIndex, choose_year) {
+  //   this.data.time = time
+  //   this.data.multiArray = multiArray
+  //   this.data.multiIndex = multiIndex
+  //   this.data.choose_year = choose_year
+  // },
+
+  //获取时间日期
+  bindMultiPickerChange: function (e) {
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      multiIndex : e.detail.value
+    })
+    const index = this.data.multiIndex;
+    const year = this.data.multiArray[0][index[0]];
+    const month = this.data.multiArray[1][index[1]];
+    const day = this.data.multiArray[2][index[2]];
+    const hour = this.data.multiArray[3][index[3]];
+    const minute = this.data.multiArray[4][index[4]];
+    console.log(`${year}-${month}-${day}-${hour}-${minute}`);
+    this.setData({
+      time: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+    })
+    // console.log(this.data.time);
+  },
+  //监听picker的滚动事件
+  bindMultiPickerColumnChange: function (e) {
+    //获取年份
+    if (e.detail.column == 0) {
+      choose_year = this.data.multiArray[e.detail.column][e.detail.value];
+      // console.log(choose_year);
+      this.setData({
+        choose_year
+      })
+    }
+    //console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    if (e.detail.column == 1) {
+      let num = parseInt(this.data.multiArray[e.detail.column][e.detail.value]);
+      let temp = [];
+      if (num == 1 || num == 3 || num == 5 || num == 7 || num == 8 || num == 10 || num == 12) { //判断31天的月份
+        for (let i = 1; i <= 31; i++) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          temp.push("" + i);
+        }
+        this.setData({
+          ['multiArray[2]']: temp
+        });
+      } else if (num == 4 || num == 6 || num == 9 || num == 11) { //判断30天的月份
+        for (let i = 1; i <= 30; i++) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          temp.push("" + i);
+        }
+        this.setData({
+          ['multiArray[2]']: temp
+        });
+      } else if (num == 2) { //判断2月份天数
+        let year = parseInt(this.data.choose_year);
+        // console.log(year);
+        if (((year % 400 == 0) || (year % 100 != 0)) && (year % 4 == 0)) {
+          for (let i = 1; i <= 29; i++) {
+            if (i < 10) {
+              i = "0" + i;
+            }
+            temp.push("" + i);
+          }
+          this.setData({
+            ['multiArray[2]']: temp
+          });
+        } else {
+          for (let i = 1; i <= 28; i++) {
+            if (i < 10) {
+              i = "0" + i;
+            }
+            temp.push("" + i);
+          }
+          this.setData({
+            ['multiArray[2]']: temp
+          });
+        }
+      }
+      // console.log(this.data.multiArray[2]);
+    }
+    var data = {
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex
+    };
+    multiArray = this.data.multiArray
+    data.multiIndex[e.detail.column] = e.detail.value;
+    this.setData(data);
+    // setTime(time, multiArray, multiIndex, choose_year)
+  },
 
   //手指触摸动作开始 记录起点X坐标
   touchstart: function (e) {
@@ -332,20 +427,6 @@ Page({
     wx.navigateTo({
       url: '../index1/index1'
     })
-    // if (this.data.transfer == "转接单页面"){
-    //   this.setData({
-    //     transfer: "转发单页面",
-    //     home: "none",
-    //   })
-    // } else {
-    //   this.setData({
-    //     transfer: "转接单页面",
-    //     home: "none"
-    //   })
-    //   wx.navigateTo({
-    //     url: '../index1/index1'
-    //   })
-    // }
   },
 
   // 触摸开始事件 
@@ -401,7 +482,6 @@ Page({
     time = 0;
   },
 
-  pics: [],//图片
   onLoad: function (options) {
     this.setData({
       navH: App.globalData.navHeight
@@ -568,111 +648,8 @@ Page({
       urls: pics
     })
   },
-  //获取时间日期
-  bindMultiPickerChange: function (e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      multiIndex: e.detail.value
-    })
-    const index = this.data.multiIndex;
-    const year = this.data.multiArray[0][index[0]];
-    const month = this.data.multiArray[1][index[1]];
-    const day = this.data.multiArray[2][index[2]];
-    const hour = this.data.multiArray[3][index[3]];
-    const minute = this.data.multiArray[4][index[4]];
-    // console.log(`${year}-${month}-${day}-${hour}-${minute}`);
-    this.setData({
-      time: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
-    })
-    // console.log(this.data.time);
-  },
-  //监听picker的滚动事件
-  bindMultiPickerColumnChange: function (e) {
-    //获取年份
-    if (e.detail.column == 0) {
-      let choose_year = this.data.multiArray[e.detail.column][e.detail.value];
-      console.log(choose_year);
-      this.setData({
-        choose_year
-      })
-    }
-    //console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-    if (e.detail.column == 1) {
-      let num = parseInt(this.data.multiArray[e.detail.column][e.detail.value]);
-      let temp = [];
-      if (num == 1 || num == 3 || num == 5 || num == 7 || num == 8 || num == 10 || num == 12) { //判断31天的月份
-        for (let i = 1; i <= 31; i++) {
-          if (i < 10) {
-            i = "0" + i;
-          }
-          temp.push("" + i);
-        }
-        this.setData({
-          ['multiArray[2]']: temp
-        });
-      } else if (num == 4 || num == 6 || num == 9 || num == 11) { //判断30天的月份
-        for (let i = 1; i <= 30; i++) {
-          if (i < 10) {
-            i = "0" + i;
-          }
-          temp.push("" + i);
-        }
-        this.setData({
-          ['multiArray[2]']: temp
-        });
-      } else if (num == 2) { //判断2月份天数
-        let year = parseInt(this.data.choose_year);
-        console.log(year);
-        if (((year % 400 == 0) || (year % 100 != 0)) && (year % 4 == 0)) {
-          for (let i = 1; i <= 29; i++) {
-            if (i < 10) {
-              i = "0" + i;
-            }
-            temp.push("" + i);
-          }
-          this.setData({
-            ['multiArray[2]']: temp
-          });
-        } else {
-          for (let i = 1; i <= 28; i++) {
-            if (i < 10) {
-              i = "0" + i;
-            }
-            temp.push("" + i);
-          }
-          this.setData({
-            ['multiArray[2]']: temp
-          });
-        }
-      }
-      console.log(this.data.multiArray[2]);
-    }
-    var data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-    data.multiIndex[e.detail.column] = e.detail.value;
-    this.setData(data);
-  },
-  // tanchu: function () {
-  //   animation = wx.createAnimation({
-  //     duration: 500,
-  //     timingFunction: 'ease',
-  //   })
 
-  //   this.animation = animation
-  //   animation.translate(0, -194).step();
-  //   this.setData({
-  //     animationData: animation.export()
-  //   })
-  // },
-  // hideModal: function () {
-  //   animation.translate(0, 0).step();
-  //   this.setData({
-  //     animationData: animation.export()
-  //   })
-  //   console.log(1)
-  // },
+  
   page1: function (e) {
     var dis1 = this.data.page1;
     var dis2 = this.data.page2;
@@ -869,12 +846,15 @@ Page({
         success: function (res) {
           var data = res.data
           console.log(data)
-          //do something
         }
       })
-      info = res;
-      console.log('文件', info)
+      this.setData({
+        src: res.tempFilePath
+      })
     })
+  },
+  ended:function () {
+    this.audioCtx.seek(2)
   },
   //播放声音
   play: function () {
